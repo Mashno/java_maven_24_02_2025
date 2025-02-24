@@ -3,6 +3,9 @@
  */
 
 package com.mycompany.mavenproject;
+import com.github.javafaker.Faker;
+
+
 
 /**
  *
@@ -11,7 +14,14 @@ package com.mycompany.mavenproject;
 public class MavenProject {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        System.out.println("HH");
+        Faker faker = new Faker();
+
+        String name = faker.name().fullName();
+        String address = faker.address().fullAddress();
+        String email = faker.internet().emailAddress();
+
+        System.out.println("Фейковое имя: " + name);
+        System.out.println("Фейковый адрес: " + address);
+        System.out.println("Фейковый email: " + email);
     }
 }
