@@ -12,10 +12,10 @@ public class Heretic {
     private String name;
     private String crimes;
     private String last_appear;
-    private int id;
+    private String id;
     private String level_threat;
     
-    public Heretic(String name, String crimes, String last_appear, int id, String level_threat){
+    public Heretic(String name, String crimes, String last_appear, String id, String level_threat){
         this.name = name;
         this.crimes = crimes;
         this.last_appear = last_appear;
@@ -35,7 +35,7 @@ public class Heretic {
         this.last_appear = last_appear;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -55,7 +55,7 @@ public class Heretic {
         return last_appear;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
