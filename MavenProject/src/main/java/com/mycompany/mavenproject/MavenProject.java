@@ -14,6 +14,7 @@ import com.github.javafaker.Faker;
 public class MavenProject {
 
     public static void main(String[] args) {
-     
+        Controller contr = new Controller();
+        new View(contr);
     }
 }
