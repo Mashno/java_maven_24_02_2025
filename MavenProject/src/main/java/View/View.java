@@ -18,6 +18,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class View {
     private JFrame frame; 
@@ -46,6 +47,15 @@ public class View {
         viewButton = new JButton("Посмотреть список");
         infoHeretic = new JButton("Просмотреть информацию");
      
+        JPanel panel = new JPanel(new GridLayout(3,1)); 
+        panel.add(addButton); 
+        panel.add(viewButton);
+        panel.add(infoHeretic);
+        frame.add(panel, BorderLayout.CENTER); 
+
+        frame.setVisible(true);
+        
+        
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,27 +68,33 @@ public class View {
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selectedIndex = hereticList.getSelectedIndex(); 
-                if (selectedIndex != -1) { 
-                    Heretic selectedHeretic = controller.allHeretics().get(selectedIndex);
-                    showHereticDetails(selectedHeretic); 
-                } else {
-                    JOptionPane.showMessageDialog(frame, "Пожалуйста, выберите еретика для просмотра информации.", "Ошибка", JOptionPane.ERROR_MESSAGE);
-                }
+                frame.setVisible(false);
+                
+                JFrame hereticsList = new JFrame();
+                hereticsList.setSize(500,300);
+                hereticsList.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                
+                JPanel hereticsPanel = new JPanel(new BorderLayout());
+                JList<String> heretics = new JList<>(listModel);
+                
+                JButton exit = new JButton("Выход");
+                
+                hereticsPanel.add(new JScrollPane(heretics), BorderLayout.CENTER);
+                hereticsPanel.add(exit, BorderLayout.EAST);
+                hereticsList.add(hereticsPanel);
+                hereticsList.setVisible(true);
+                
+                exit.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        hereticsList.dispose();
+                        frame.setVisible(true);
+                    }
+                    
+                });
             }
         });
-
-
-         
-
-        JPanel panel = new JPanel(new GridLayout(3,1)); 
-        panel.add(addButton); 
-        panel.add(viewButton);
-        panel.add(infoHeretic);
-        frame.add(panel, BorderLayout.CENTER); 
-
-        frame.setVisible(true); 
-        
+  
     }
 
     private void updateList() {

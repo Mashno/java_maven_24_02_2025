@@ -27,4 +27,12 @@ public class Controller {
         return heretics;
     }
     
+    public ArrayList<String> getNames(){
+        ArrayList<String> names = null;
+        for(Heretic heretic: heretics){
+            names.add(heretic.getName());
+        }
+        return names;
+    }
+    
 }
