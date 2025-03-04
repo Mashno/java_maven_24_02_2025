@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.mavenproject;
+package View;
 
 /**
  *
@@ -12,6 +12,8 @@ package com.mycompany.mavenproject;
 
 
 
+import Controller.Controller;
+import model.Heretic;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,6 +23,7 @@ public class View {
     private JFrame frame; 
     private JButton addButton;
     private JButton viewButton; 
+    private JButton infoHeretic;
     private JList<String> hereticList; 
     private DefaultListModel<String> listModel; 
     private Controller controller;
@@ -33,14 +36,15 @@ public class View {
     private void initialize() {
         frame = new JFrame("Heretic Tracker"); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        frame.setSize(400, 300); 
+        frame.setSize(500,300);
+        frame.setLayout(new BorderLayout());
 
         listModel = new DefaultListModel<>();
         hereticList = new JList<>(listModel); 
 
         addButton = new JButton("Добавить еретика"); 
-        viewButton = new JButton("Просмотреть информацию"); 
-
+        viewButton = new JButton("Посмотреть список");
+        infoHeretic = new JButton("Просмотреть информацию");
      
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -65,15 +69,16 @@ public class View {
         });
 
 
-        frame.setLayout(new BorderLayout());
-        frame.add(new JScrollPane(hereticList), BorderLayout.CENTER); 
+         
 
-        JPanel panel = new JPanel(); 
+        JPanel panel = new JPanel(new GridLayout(3,1)); 
         panel.add(addButton); 
         panel.add(viewButton);
-        frame.add(panel, BorderLayout.SOUTH); 
+        panel.add(infoHeretic);
+        frame.add(panel, BorderLayout.CENTER); 
 
         frame.setVisible(true); 
+        
     }
 
     private void updateList() {

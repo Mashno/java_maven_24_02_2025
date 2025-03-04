@@ -3,6 +3,8 @@
  */
 
 package com.mycompany.mavenproject;
+import Controller.Controller;
+import View.View;
 import com.github.javafaker.Faker;
 
 
